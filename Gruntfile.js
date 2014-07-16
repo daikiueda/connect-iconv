@@ -1,8 +1,8 @@
 /*
- * 
+ * Grunt live-reload with connect-iconv.
  * Copyright (c) 2014 daikiueda, @ue_di
  * Licensed under the MIT license.
- * https://github.com/daikiueda/
+ * https://github.com/daikiueda/connect-iconv
  */
 
 "use strict";
@@ -15,7 +15,7 @@ module.exports = function( grunt ){
                 options: {
                     port: 8000,
                     hostname: "localhost",
-                    base: "./htdocs",
+                    base: "../htdocs",
                     livereload: true,
 
                     middleware: function( connect, options, middlewares ){
@@ -24,12 +24,34 @@ module.exports = function( grunt ){
                     }
                 }
             }
+        },
+
+        open: {
+            main: {
+                path: [
+                    "http://<%= connect.livereload.options.hostname %>",
+                    ":<%= connect.livereload.options.port %>"
+                ].join( "" )
+            }
+        },
+
+        watch: {
+            options: {
+                livereload: true
+            },
+            htdocs: {
+                files: [ "../htdocs/**/*.*" ]
+            }
         }
     } );
 
     grunt.loadNpmTasks( "grunt-contrib-connect" );
+    grunt.loadNpmTasks( "grunt-contrib-watch" );
+    grunt.loadNpmTasks( "grunt-open" );
 
     grunt.registerTask( "default", [
-        "connect::keepalive"
+        "connect",
+        "open",
+        "watch"
     ] );
 };
