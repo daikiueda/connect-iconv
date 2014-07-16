@@ -1,6 +1,6 @@
 "use strict";
 
-var iconv = require('iconv-lite');
+var iconv = require( "iconv-lite" );
 
 /**
  * @param options
@@ -12,12 +12,12 @@ module.exports = function( options ){
 
     options = options || {};
     
-    var encode = options.encode || "utf8",
+    var myEncoding = options.encode || "utf8",
         fileTypes = options.fileTypes || [ "/", ".html", ".css", ".js", ".txt" ],
-        pattern = new RegExp( "(" + fileTypes.join( "|" ) + "$)" );
+        pattern = new RegExp( "(" + fileTypes.join( "|" ) + ")$" );
     
     return function( req, res, next ){
-        
+
         if( !pattern.test( req.url.replace( /\?.*$/, "" ) ) ){
             return next();
         }
@@ -28,7 +28,7 @@ module.exports = function( options ){
         res.convertedContent = "";
         
         res.write = function( string, encoding ){
-            res.convertedContent += iconv.decode( new Buffer( string ), encode );
+            res.convertedContent += iconv.decode( new Buffer( string ), myEncoding );
             return true;
         };
 
