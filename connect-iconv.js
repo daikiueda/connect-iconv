@@ -1,6 +1,8 @@
 "use strict";
 
-var iconv = require( "iconv-lite" );
+var parseURL = require( "url" ).parse,
+    path = require( "path" ),
+    iconv = require( "iconv-lite" );
 
 /**
  * @param options
@@ -22,8 +24,14 @@ module.exports = function( options ){
             return next();
         }
 
-        var write = res.write,
+        var url = parseURL( req.url ),
+            write = res.write,
             end = res.end;
+        
+        function restore(){
+            res.write = write;
+            res.end = end;
+        }
 
         res.convertedContent = "";
         
@@ -33,8 +41,11 @@ module.exports = function( options ){
         };
 
         res.end = function( string, encoding ){
-            res.setHeader( "content-length", Buffer.byteLength( res.convertedContent, encoding ) );
-            return end.call( res, res.convertedContent, encoding );
+            var contentString = ( res.convertedContent !== "" )? res.convertedContent: string;
+            
+            restore();
+            res.setHeader( "content-length", Buffer.byteLength( contentString, encoding ) );
+            return end.call( res, contentString, encoding );
         };
         
         next();
