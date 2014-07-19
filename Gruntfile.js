@@ -11,13 +11,24 @@ module.exports = function( grunt ){
 
     grunt.initConfig( {
         connect: {
+            options: {
+                port: 8000,
+                hostname: "localhost"
+            },
             livereload: {
                 options: {
-                    port: 8000,
-                    hostname: "localhost",
                     base: "../htdocs",
                     livereload: true,
+                    middleware: function( connect, options, middlewares ){
+                        middlewares.unshift( require( "./connect-iconv.js" )( { encode: "shift_jis" } ) );
+                        return middlewares;
+                    }
+                }
+            },
 
+            test_shift_jis: {
+                options: {
+                    base: "test/htdocs_shift_jis",
                     middleware: function( connect, options, middlewares ){
                         middlewares.unshift( require( "./connect-iconv.js" )( { encode: "shift_jis" } ) );
                         return middlewares;
@@ -50,8 +61,8 @@ module.exports = function( grunt ){
     grunt.loadNpmTasks( "grunt-open" );
 
     grunt.registerTask( "default", [
-        "connect",
-        "open",
+        "connect:livereload",
+        "open:main",
         "watch"
     ] );
 };
