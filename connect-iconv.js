@@ -20,12 +20,11 @@ module.exports = function( options ){
     
     return function( req, res, next ){
 
-        if( !pattern.test( req.url.replace( /\?.*$/, "" ) ) ){
+        if( !pattern.test( parseURL( req.url ).pathname ) ){
             return next();
         }
 
-        var url = parseURL( req.url ),
-            write = res.write,
+        var write = res.write,
             end = res.end;
         
         function restore(){
