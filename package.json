@@ -4,7 +4,7 @@
   "description": "Convert character encodings as connect middleware.",
   "main": "connect-iconv.js",
   "dependencies": {
-    "iconv-lite": "^0.4.3"
+    "iconv-lite": "^0.4.4"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
