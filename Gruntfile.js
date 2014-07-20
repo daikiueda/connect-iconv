@@ -1,5 +1,5 @@
 /*
- * Grunt live-reload with connect-iconv.
+ * Grunt live-reload with connect-iconv ( and test server setting ).
  * Copyright (c) 2014 daikiueda, @ue_di
  * Licensed under the MIT license.
  * https://github.com/daikiueda/connect-iconv
