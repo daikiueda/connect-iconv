@@ -11,7 +11,7 @@ Convert character encodings as connect middleware.
 
 * __options__ Object
 
-  * ```encode``` String
+  * ```encode``` String  
     default: "utf8"
   
   * ```fileTypes``` Array _(optional)_  
