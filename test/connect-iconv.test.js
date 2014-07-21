@@ -24,7 +24,6 @@ describe( "grunt-contrib-connect", function(){
 
         after( function(){ server.kill(); } );
 
-
         it( ".html", function( done ){
 
             get( "http://localhost:8000/", function( res ){
