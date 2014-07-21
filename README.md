@@ -1,7 +1,15 @@
 connect-iconv [![Build Status](https://travis-ci.org/daikiueda/connect-iconv.svg?branch=master)](https://travis-ci.org/daikiueda/connect-iconv)
 =============
 
+[![NPM](https://nodei.co/npm/connect-iconv.png?compact=true)](https://nodei.co/npm/connect-iconv/)
+
 Convert character encodings as connect middleware. 
+
+## Install
+
+```Bash
+$ npm install connect-iconv
+```
 
 ## Usage
 
