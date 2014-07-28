@@ -19,6 +19,10 @@ describe( "grunt-contrib-connect", function(){
                 if( data.indexOf( "Started connect web server" ) >= 0 ){
                     done();
                 }
+
+                if( data.indexOf( "Fatal error" ) >= 0 ){
+                    done( new Error( data ) );
+                }
             } );
         } );
 
