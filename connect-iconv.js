@@ -6,7 +6,7 @@ var parseURL = require( "url" ).parse,
 
 /**
  * @param options
- *   @param {String} options.encode
+ *   @param {String} options.charset
  *   @param {Array} [options.fileTypes]
  * @returns {Function}
  */
@@ -14,7 +14,7 @@ module.exports = function( options ){
 
     options = options || {};
     
-    var myEncoding = options.encode || "utf8",
+    var charset = options.charset || "utf8",
         fileTypes = options.fileTypes || [ "/", ".html", ".css", ".js", ".txt" ],
         pattern = new RegExp( "(" + fileTypes.join( "|" ) + ")$" );
     
@@ -35,7 +35,7 @@ module.exports = function( options ){
         res.convertedContent = "";
         
         res.write = function( string, encoding ){
-            res.convertedContent += iconv.decode( new Buffer( string ), myEncoding );
+            res.convertedContent += iconv.decode( new Buffer( string ), charset );
             return true;
         };
 

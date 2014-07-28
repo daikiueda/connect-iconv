@@ -19,7 +19,7 @@ $ npm install connect-iconv
 
 * __options__ Object
 
-  * ```encode``` String  
+  * ```charset``` String  
     default: "utf8"
   
   * ```fileTypes``` Array _(optional)_  
@@ -39,7 +39,7 @@ module.exports = function( grunt ){
                     hostname: "localhost"
                     base: "../htdocs",
                     middleware: function( connect, options, middlewares ){
-                        middlewares.unshift( require( "connect-iconv" )( { encode: "shift_jis" } ) );
+                        middlewares.unshift( require( "connect-iconv" )( { charset: "shift_jis" } ) );
                         return middlewares;
                     }
                 }

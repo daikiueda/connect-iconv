@@ -20,7 +20,7 @@ module.exports = function( grunt ){
                     base: "../htdocs",
                     livereload: true,
                     middleware: function( connect, options, middlewares ){
-                        middlewares.unshift( require( "./connect-iconv.js" )( { encode: "shift_jis" } ) );
+                        middlewares.unshift( require( "./connect-iconv.js" )( { charset: "shift_jis" } ) );
                         return middlewares;
                     }
                 }
@@ -30,7 +30,7 @@ module.exports = function( grunt ){
                 options: {
                     base: "test/htdocs_shift_jis",
                     middleware: function( connect, options, middlewares ){
-                        middlewares.unshift( require( "./connect-iconv.js" )( { encode: "shift_jis" } ) );
+                        middlewares.unshift( require( "./connect-iconv.js" )( { charset: "shift_jis" } ) );
                         return middlewares;
                     }
                 }
