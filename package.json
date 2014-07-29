@@ -1,6 +1,6 @@
 {
   "name": "connect-iconv",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Convert character encodings as connect middleware.",
   "main": "connect-iconv.js",
   "dependencies": {
@@ -26,5 +26,11 @@
   "bugs": {
     "url": "https://github.com/daikiueda/connect-iconv/issues"
   },
-  "homepage": "https://github.com/daikiueda/connect-iconv"
+  "homepage": "https://github.com/daikiueda/connect-iconv",
+  "keywords": [
+    "connect",
+    "encoding",
+    "charset",
+    "iconv"
+  ]
 }
