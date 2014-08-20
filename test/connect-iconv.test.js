@@ -28,14 +28,29 @@ describe( "grunt-contrib-connect", function(){
 
         after( function(){ server.kill(); } );
 
-        it( ".html", function( done ){
+        describe( ".html", function(){
+            
+            it( "first time.", function( done ){
+                get( "http://localhost:8000/", function( res ){
+                    res.on( "data", function( chunk ){
+                        expect( chunk.toString() ).to.contain( "テスト" );
+                        done();
+                    } );
+                } ).on( "error", done );
+            } );
 
-            get( "http://localhost:8000/", function( res ){
-                res.on( "data", function( chunk ){
-                    expect( chunk.toString() ).to.contain( "テスト" );
-                    done();
-                } );
-            } ).on( "error", done );
+            it( "reloaded.", function( done ){
+                get( "http://localhost:8000/", function( res ){
+                    res.on( "data", function( chunk ){
+                        expect( chunk.toString() ).to.contain( "テスト" );
+                        
+                        // 意図に関してテストをパスするので、無理やり失敗させておく。
+                        expect( "意図に関してテストをパスするので、無理やり失敗させておく。" ).to.be.not.ok;
+                        
+                        done();
+                    } );
+                } ).on( "error", done );
+            } );
         } );
     } );
 } );
