@@ -1,9 +1,13 @@
 connect-iconv [![Build Status](https://travis-ci.org/daikiueda/connect-iconv.svg?branch=master)](https://travis-ci.org/daikiueda/connect-iconv)
 =============
 
-[![NPM](https://nodei.co/npm/connect-iconv.png?compact=true)](https://nodei.co/npm/connect-iconv/)
-
 Convert character encodings as connect middleware. 
+
+<h2 style="color:red;">DANGER!!</h2>
+
+Does not work as your expect (>_<)
+
+<!--
 
 ## Install
 
@@ -49,3 +53,4 @@ module.exports = function( grunt ){
     grunt.loadNpmTasks( "grunt-contrib-connect" );
 };
 ```
+-->
